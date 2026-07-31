@@ -9,8 +9,8 @@ import {
   FaChevronUp,
   FaBars,
   FaTimes,
-  
 } from "react-icons/fa";
+
 import { HiHome } from "react-icons/hi";
 
 import { useNavigate, useLocation } from "react-router-dom";
@@ -55,7 +55,7 @@ const Navbar = ({ onLogout }) => {
     }`;
 
   return (
-    <div className="bg-[#FFA733] rounded-2xl px-5 lg:px-8 py-5">
+    <div className="relative z-50 bg-[#FFA733] rounded-2xl px-5 lg:px-8 py-5">
       <div className="flex items-center justify-between">
         <div
           className="flex items-center gap-3 cursor-pointer"
@@ -65,158 +65,24 @@ const Navbar = ({ onLogout }) => {
 
           <img src={logoname} alt="name" className="h-10 object-contain" />
         </div>
-        <div className="hidden mr-36 lg:flex items-center gap-3 lg:gap-6 text-sm">
+
+        <div className="hidden lg:flex items-center gap-6 text-sm mr-36">
           <button
+            type="button"
             onClick={() => navigate("/dashboard")}
             className={menuClass("/dashboard")}
           >
             <HiHome />
             Dashboard
-          </button>{" "}
-          <div ref={userRef} className="relative">
-            <button
-              onClick={() => setUserOpen(!userOpen)}
-              className={`flex items-center gap-2 px-5 py-3 rounded-xl transition ${
-                location.pathname.includes("/users")
-                  ? "bg-[#40D5CF] text-black shadow font-semibold"
-                  : "text-white hover:bg-white/20"
-              }`}
-            >
-              <FaUsers />
-              Users
-              {userOpen ? (
-                <FaChevronUp size={12} />
-              ) : (
-                <FaChevronDown size={12} />
-              )}
-            </button>
-
-            {userOpen && (
-              <div className="absolute top-14 left-0 bg-white rounded-xl shadow-lg w-48 overflow-hidden z-50">
-                <button
-                  onClick={() => {
-                    navigate("/users");
-                    setUserOpen(false);
-                  }}
-                  className="block w-full text-left px-4 py-3 hover:bg-gray-100"
-                >
-                  All Users
-                </button>
-
-                <button
-                  onClick={() => {
-                    navigate("/users/active");
-                    setUserOpen(false);
-                  }}
-                  className="block w-full text-left px-4 py-3 hover:bg-gray-100"
-                >
-                  Active Users
-                </button>
-
-                <button
-                  onClick={() => {
-                    navigate("/users/block");
-                    setUserOpen(false);
-                  }}
-                  className="block w-full text-left px-4 py-3 hover:bg-gray-100"
-                >
-                  Block Users
-                </button>
-              </div>
-            )}
-          </div>
-          <button
-            onClick={() => navigate("/company")}
-            className={menuClass("/company")}
-          >
-            <FaBuilding />
-            Company
-          </button>
-          <button
-            onClick={() => navigate("/voucher")}
-            className={menuClass("/voucher")}
-          >
-            <FaTicketAlt />
-            Vouchers
-          </button>
-          <div ref={settingRef} className="relative">
-            <button
-              onClick={() => setSettingOpen(!settingOpen)}
-              className={`flex items-center gap-2 px-5 py-3 rounded-xl transition ${
-                location.pathname.includes("/packages") ||
-                location.pathname.includes("/revenue")
-                  ? "bg-[#40D5CF] text-black font-semibold shadow"
-                  : "text-white hover:bg-white/20"
-              }`}
-            >
-              <FaCog />
-              Settings
-              {settingOpen ? (
-                <FaChevronUp size={12} />
-              ) : (
-                <FaChevronDown size={12} />
-              )}
-            </button>
-
-            {settingOpen && (
-              <div className="absolute top-14 left-0 bg-white rounded-xl shadow-lg w-48 overflow-hidden z-50">
-                <button
-                  onClick={() => {
-                    navigate("/packages");
-                    setSettingOpen(false);
-                  }}
-                  className="block w-full text-left px-4 py-3 hover:bg-gray-100"
-                >
-                  Packages
-                </button>
-
-                <button
-                  onClick={() => {
-                    navigate("/revenue");
-                    setSettingOpen(false);
-                  }}
-                  className="block w-full text-left px-4 py-3 hover:bg-gray-100"
-                >
-                  Revenue
-                </button>
-
-                <button
-                  onClick={() => {
-                    setSettingOpen(false);
-                    onLogout();
-                  }}
-                  className="block w-full text-left px-4 py-3 hover:bg-gray-100 text-red-500"
-                >
-                  Logout
-                </button>
-              </div>
-            )}
-          </div>
-        </div>{" "}
-        <button
-          onClick={() => setMobileMenu(!mobileMenu)}
-          className="lg:hidden text-white text-2xl"
-        >
-          {mobileMenu ? <FaTimes /> : <FaBars />}
-        </button>
-      </div>
-
-      {mobileMenu && (
-        <div className="lg:hidden mt-5 flex flex-col gap-3 text-sm">
-          <button
-            onClick={() => {
-              navigate("/dashboard");
-              setMobileMenu(false);
-            }}
-            className={menuClass("/dashboard")}
-          >
-            <HiHome />
-            Dashboard
           </button>
 
-          <div className="w-full">
+          <div className="w-full relative">
             <button
-              onClick={() => setUserOpen(!userOpen)}
+              type="button"
+              onClick={(e) => {
+                e.stopPropagation();
+                setUserOpen(!userOpen);
+              }}
               className={`w-full flex items-center justify-between px-5 py-3 rounded-xl transition ${
                 location.pathname.includes("/users")
                   ? "bg-[#40D5CF] text-black shadow font-semibold"
@@ -236,8 +102,9 @@ const Navbar = ({ onLogout }) => {
             </button>
 
             {userOpen && (
-              <div className="bg-white rounded-xl mt-2 overflow-hidden">
+              <div className="bg-white rounded-xl mt-2 overflow-hidden relative z-[9999]">
                 <button
+                  type="button"
                   onClick={() => {
                     navigate("/users");
                     setUserOpen(false);
@@ -249,6 +116,7 @@ const Navbar = ({ onLogout }) => {
                 </button>
 
                 <button
+                  type="button"
                   onClick={() => {
                     navigate("/users/active");
                     setUserOpen(false);
@@ -260,6 +128,7 @@ const Navbar = ({ onLogout }) => {
                 </button>
 
                 <button
+                  type="button"
                   onClick={() => {
                     navigate("/users/block");
                     setUserOpen(false);
@@ -274,6 +143,170 @@ const Navbar = ({ onLogout }) => {
           </div>
 
           <button
+            type="button"
+            onClick={() => navigate("/company")}
+            className={menuClass("/company")}
+          >
+            <FaBuilding />
+            Company
+          </button>
+
+          <button
+            type="button"
+            onClick={() => navigate("/voucher")}
+            className={menuClass("/voucher")}
+          >
+            <FaTicketAlt />
+            Vouchers
+          </button>
+
+          <div ref={settingRef} className="relative">
+            <button
+              type="button"
+              onClick={() => setSettingOpen(!settingOpen)}
+              className={`flex items-center gap-2 px-5 py-3 rounded-xl ${
+                location.pathname.includes("/packages") ||
+                location.pathname.includes("/revenue")
+                  ? "bg-[#40D5CF] text-black shadow font-semibold"
+                  : "text-white hover:bg-white/20"
+              }`}
+            >
+              <FaCog />
+              Settings
+              {settingOpen ? (
+                <FaChevronUp size={12} />
+              ) : (
+                <FaChevronDown size={12} />
+              )}
+            </button>
+
+            {settingOpen && (
+              <div className="absolute top-14 left-0 bg-white rounded-xl shadow-lg w-48 overflow-hidden z-[100]">
+                <button
+                  type="button"
+                  onClick={() => {
+                    navigate("/packages");
+                    setSettingOpen(false);
+                  }}
+                  className="block w-full text-left px-4 py-3 hover:bg-gray-100"
+                >
+                  Packages
+                </button>
+
+                <button
+                  type="button"
+                  onClick={() => {
+                    navigate("/revenue");
+                    setSettingOpen(false);
+                  }}
+                  className="block w-full text-left px-4 py-3 hover:bg-gray-100"
+                >
+                  Revenue
+                </button>
+
+                <button
+                  type="button"
+                  onClick={() => {
+                    setSettingOpen(false);
+                    onLogout();
+                  }}
+                  className="block w-full text-left px-4 py-3 hover:bg-gray-100 text-red-500"
+                >
+                  Logout
+                </button>
+              </div>
+            )}
+          </div>
+        </div>
+
+        <button
+          type="button"
+          onClick={() => setMobileMenu(!mobileMenu)}
+          className="lg:hidden text-white text-2xl"
+        >
+          {mobileMenu ? <FaTimes /> : <FaBars />}
+        </button>
+      </div>
+
+      {mobileMenu && (
+        <div className="lg:hidden mt-5 flex flex-col gap-3 text-sm relative z-[100]">
+          <button
+            type="button"
+            onClick={() => {
+              navigate("/dashboard");
+              setMobileMenu(false);
+            }}
+            className={menuClass("/dashboard")}
+          >
+            <HiHome />
+            Dashboard
+          </button>
+
+         <div ref={userRef} className="relative">
+            <button
+              type="button"
+              onClick={() => setUserOpen(!userOpen)}
+              className={`w-full flex justify-between items-center px-5 py-3 rounded-xl ${
+                location.pathname.includes("/users")
+                  ? "bg-[#40D5CF] text-black shadow font-semibold"
+                  : "text-white hover:bg-white/20"
+              }`}
+            >
+              <span className="flex gap-2 items-center">
+                <FaUsers />
+                Users
+              </span>
+
+              {userOpen ? (
+                <FaChevronUp size={12} />
+              ) : (
+                <FaChevronDown size={12} />
+              )}
+            </button>
+
+            {userOpen && (
+              <div className="relative z-[200] bg-white rounded-xl mt-2 overflow-hidden">
+                <button
+                  type="button"
+                  onClick={() => {
+                    navigate("/users");
+                    setUserOpen(false);
+                    setMobileMenu(false);
+                  }}
+                  className="block w-full text-left px-4 py-3 hover:bg-gray-100"
+                >
+                  All Users
+                </button>
+
+                <button
+                  type="button"
+                  onClick={() => {
+                    navigate("/users/active");
+                    setUserOpen(false);
+                    setMobileMenu(false);
+                  }}
+                  className="block w-full text-left px-4 py-3 hover:bg-gray-100"
+                >
+                  Active Users
+                </button>
+
+                <button
+                  type="button"
+                  onClick={() => {
+                    navigate("/users/block");
+                    setUserOpen(false);
+                    setMobileMenu(false);
+                  }}
+                  className="block w-full text-left px-4 py-3 hover:bg-gray-100"
+                >
+                  Block Users
+                </button>
+              </div>
+            )}
+          </div>
+
+          <button
+            type="button"
             onClick={() => {
               navigate("/company");
               setMobileMenu(false);
@@ -285,6 +318,7 @@ const Navbar = ({ onLogout }) => {
           </button>
 
           <button
+            type="button"
             onClick={() => {
               navigate("/voucher");
               setMobileMenu(false);
@@ -294,14 +328,19 @@ const Navbar = ({ onLogout }) => {
             <FaTicketAlt />
             Vouchers
           </button>
+          {/* Mobile Settings */}
 
-          <div className="w-full">
+         <div ref={settingRef} className="w-full relative">
             <button
-              onClick={() => setSettingOpen(!settingOpen)}
-              className={`w-full flex items-center justify-between px-5 py-3 rounded-xl transition ${
+              type="button"
+              onClick={(e) => {
+                e.stopPropagation();
+                setSettingOpen((prev) => !prev);
+              }}
+              className={`w-full flex justify-between items-center px-5 py-3 rounded-xl ${
                 location.pathname.includes("/packages") ||
                 location.pathname.includes("/revenue")
-                  ? "bg-[#40D5CF] text-black font-semibold shadow"
+                  ? "bg-[#40D5CF] text-black shadow font-semibold"
                   : "text-white hover:bg-white/20"
               }`}
             >
@@ -318,8 +357,9 @@ const Navbar = ({ onLogout }) => {
             </button>
 
             {settingOpen && (
-              <div className="bg-white rounded-xl mt-2 overflow-hidden">
+              <div className="relative z-[999] bg-white rounded-xl mt-2 overflow-hidden">
                 <button
+                  type="button"
                   onClick={() => {
                     navigate("/packages");
                     setSettingOpen(false);
@@ -331,6 +371,7 @@ const Navbar = ({ onLogout }) => {
                 </button>
 
                 <button
+                  type="button"
                   onClick={() => {
                     navigate("/revenue");
                     setSettingOpen(false);
@@ -342,6 +383,7 @@ const Navbar = ({ onLogout }) => {
                 </button>
 
                 <button
+                  type="button"
                   onClick={() => {
                     setSettingOpen(false);
                     setMobileMenu(false);
