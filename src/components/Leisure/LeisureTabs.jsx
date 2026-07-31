@@ -4,10 +4,10 @@ import { LuSettings2 } from "react-icons/lu";
 
 const LeisureTabs = ({ search, setSearch, onAdd }) => {
   return (
-    <div className="flex flex-col sm:flex-row sm:items-center gap-4 w-full">
+    <div className="flex flex-col lg:flex-row lg:items-center gap-4 w-full">
 
       {/* Sort */}
-      <div className="relative w-full sm:w-auto">
+      <div className="relative w-full lg:w-[170px]">
         <select
           className="
             appearance-none
@@ -21,7 +21,6 @@ const LeisureTabs = ({ search, setSearch, onAdd }) => {
             outline-none
             cursor-pointer
             w-full
-            sm:w-[160px]
           "
         >
           <option>Leisure Home</option>
@@ -42,7 +41,6 @@ const LeisureTabs = ({ search, setSearch, onAdd }) => {
       </div>
 
       {/* Search */}
-
       <div
         className="
           bg-white
@@ -53,7 +51,7 @@ const LeisureTabs = ({ search, setSearch, onAdd }) => {
           px-3
           shadow-sm
           w-full
-          sm:flex-1
+          lg:flex-1
         "
       >
         <FaSearch className="text-gray-400 text-sm shrink-0" />
@@ -84,7 +82,6 @@ const LeisureTabs = ({ search, setSearch, onAdd }) => {
       </div>
 
       {/* Add Button */}
-
       <button
         onClick={onAdd}
         className="
@@ -98,7 +95,7 @@ const LeisureTabs = ({ search, setSearch, onAdd }) => {
           justify-center
           gap-2
           w-full
-          sm:w-[170px]
+          lg:w-[180px]
           px-6
         "
       >
@@ -116,8 +113,9 @@ const LeisureTabs = ({ search, setSearch, onAdd }) => {
           <FaPlus className="text-[#F7A62C] text-xs" />
         </span>
 
-        Add Leisure
+        <span>Add Leisure</span>
       </button>
+
     </div>
   );
 };

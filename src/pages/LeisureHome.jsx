@@ -15,7 +15,7 @@ const LeisureHome = () => {
   const filteredData = data.filter(
     (item) =>
       item.title.toLowerCase().includes(search.toLowerCase()) ||
-      item.location.toLowerCase().includes(search.toLowerCase()),
+      item.location.toLowerCase().includes(search.toLowerCase())
   );
 
   const handleAdd = () => {
@@ -35,7 +35,7 @@ const LeisureHome = () => {
   const handleSave = (newProperty) => {
     if (selectedProperty) {
       setData((prev) =>
-        prev.map((item) => (item.id === newProperty.id ? newProperty : item)),
+        prev.map((item) => (item.id === newProperty.id ? newProperty : item))
       );
     } else {
       setData((prev) => [...prev, newProperty]);
@@ -46,15 +46,19 @@ const LeisureHome = () => {
   };
 
   return (
-    <div className="p-6 bg-[#43D6CF]">
+    <div className="p-4 sm:p-6 bg-[#43D6CF] min-h-screen">
       <Navbar />
 
-      <div className="flex items-center justify-between mb-8">
-        <h1 className="text-3xl font-bold mt-3 text-white underline underline-offset-8">
+      <div className="mb-8">
+        <h1 className="text-white text-3xl sm:text-4xl font-bold underline underline-offset-8 mt-3 mb-6">
           Leisure Home
         </h1>
 
-        <LeisureTabs search={search} setSearch={setSearch} onAdd={handleAdd} />
+        <LeisureTabs
+          search={search}
+          setSearch={setSearch}
+          onAdd={handleAdd}
+        />
       </div>
 
       <LeisureGrid
