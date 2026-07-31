@@ -9,6 +9,7 @@ import {
   FaChevronUp,
   FaBars,
   FaTimes,
+  
 } from "react-icons/fa";
 import { HiHome } from "react-icons/hi";
 
@@ -209,7 +210,7 @@ const Navbar = ({ onLogout }) => {
             }}
             className={menuClass("/dashboard")}
           >
-            <FaHome />
+            <HiHome />
             Dashboard
           </button>
 
