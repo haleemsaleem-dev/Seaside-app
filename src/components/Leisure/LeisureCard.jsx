@@ -4,9 +4,6 @@ import {
   FaEdit,
   FaTrash,
   FaMapMarkerAlt,
-  FaBed,
-  FaBath,
-  FaUsers,
 } from "react-icons/fa";
 import { useNavigate } from "react-router-dom";
 
@@ -30,12 +27,13 @@ const LeisureCard = ({ item, onEdit, onDelete }) => {
   }, []);
 
   return (
-    <div className="bg-white rounded-2xl overflow-hidden shadow-md hover:shadow-xl transition duration-300 max-w-[390px] mx-auto">
+    <div className="bg-white rounded-2xl overflow-hidden shadow-md hover:shadow-xl transition duration-300 w-full max-w-[390px] mx-auto">
+
       <div className="relative">
         <img
           src={item.image}
           alt={item.title}
-          className="w-full h-58 object-cover"
+          className="w-full h-[220px] sm:h-[250px] object-cover"
         />
 
         <div ref={menuRef} className="absolute top-4 right-4">
@@ -48,6 +46,7 @@ const LeisureCard = ({ item, onEdit, onDelete }) => {
 
           {showMenu && (
             <div className="absolute right-0 mt-2 bg-white rounded-2xl shadow-lg w-44 overflow-hidden z-50">
+
               <button
                 onClick={() => {
                   onEdit(item);
@@ -69,29 +68,32 @@ const LeisureCard = ({ item, onEdit, onDelete }) => {
                 <FaTrash />
                 Delete
               </button>
+
             </div>
           )}
         </div>
       </div>
 
       <div className="p-5">
-        <h2 className="font-bold text-xl text-gray-800">{item.title}</h2>
+
+        <h2 className="font-bold text-xl text-gray-800">
+          {item.title}
+        </h2>
 
         <div className="flex items-center gap-2 text-gray-500 mt-2">
           <FaMapMarkerAlt />
           <span>{item.location}</span>
         </div>
 
-        {/* Bottom */}
-
-        <div className="flex justify-between items-center mt-6">
+        <div className="mt-6">
           <button
             onClick={() => navigate(`/voucher/leisure-home/${item.id}`)}
-            className="bg-[#F7A62C] hover:bg-[#ec9b1f] text-white px-5 py-3 w-[400px] rounded-xl transition"
+            className="bg-[#F7A62C] hover:bg-[#ec9b1f] text-white py-3 w-full rounded-xl transition"
           >
             View property
           </button>
         </div>
+
       </div>
     </div>
   );

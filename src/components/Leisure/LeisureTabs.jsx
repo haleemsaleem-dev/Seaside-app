@@ -7,18 +7,18 @@ const LeisureTabs = ({ search, setSearch, onAdd }) => {
     <div className="flex flex-col sm:flex-row sm:items-center gap-4 w-full">
 
       {/* Sort */}
-      <div className="relative mt-3 w-full sm:w-auto">
+      <div className="relative w-full sm:w-auto">
         <select
           className="
-            appearance-none 
-            bg-white 
-            h-12 
-            rounded-2xl 
-            px-5 
-            pr-10 
-            text-sm 
-            shadow-sm 
-            outline-none 
+            appearance-none
+            bg-white
+            h-12
+            rounded-2xl
+            px-5
+            pr-10
+            text-sm
+            shadow-sm
+            outline-none
             cursor-pointer
             w-full
             sm:w-[160px]
@@ -30,31 +30,30 @@ const LeisureTabs = ({ search, setSearch, onAdd }) => {
 
         <FaChevronDown
           className="
-            absolute 
-            right-4 
-            top-1/2 
-            -translate-y-1/2 
-            text-gray-500 
-            text-xs 
+            absolute
+            right-4
+            top-1/2
+            -translate-y-1/2
+            text-gray-500
+            text-xs
             pointer-events-none
           "
         />
       </div>
 
-
       {/* Search */}
+
       <div
         className="
-          bg-white 
-          rounded-2xl 
-          h-12 
-          flex 
-          items-center 
-          px-3 
-          shadow-sm 
+          bg-white
+          rounded-2xl
+          h-12
+          flex
+          items-center
+          px-3
+          shadow-sm
           w-full
-          sm:w-[320px]
-          mt-3
+          sm:flex-1
         "
       >
         <FaSearch className="text-gray-400 text-sm shrink-0" />
@@ -69,13 +68,13 @@ const LeisureTabs = ({ search, setSearch, onAdd }) => {
 
         <button
           className="
-            w-9 
-            h-9 
-            rounded-full 
-            bg-[#43D6CF] 
-            text-white 
-            flex 
-            items-center 
+            w-9
+            h-9
+            rounded-full
+            bg-[#43D6CF]
+            text-white
+            flex
+            items-center
             justify-center
             shrink-0
           "
@@ -84,43 +83,41 @@ const LeisureTabs = ({ search, setSearch, onAdd }) => {
         </button>
       </div>
 
-
       {/* Add Button */}
+
       <button
         onClick={onAdd}
         className="
-          bg-[#F7A62C] 
-          mt-2 
-          hover:bg-[#ec9b1f] 
-          text-white 
-          h-12 
-          px-6 
-          rounded-2xl 
-          flex 
-          items-center 
+          bg-[#F7A62C]
+          hover:bg-[#ec9b1f]
+          text-white
+          h-12
+          rounded-2xl
+          flex
+          items-center
           justify-center
           gap-2
           w-full
-          sm:w-auto
+          sm:w-[170px]
+          px-6
         "
       >
         <span
           className="
-            w-7 
-            h-7 
-            rounded-full 
-            bg-white 
-            flex 
-            items-center 
+            w-7
+            h-7
+            rounded-full
+            bg-white
+            flex
+            items-center
             justify-center
           "
         >
           <FaPlus className="text-[#F7A62C] text-xs" />
         </span>
 
-        <span>Add Leisure</span>
+        Add Leisure
       </button>
-
     </div>
   );
 };
