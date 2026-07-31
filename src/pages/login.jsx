@@ -2,7 +2,7 @@ import React from "react";
 import { FaEnvelope, FaKey, FaEye, FaTimes } from "react-icons/fa";
 import { useNavigate } from "react-router-dom";
 
-import beach from "../assets/desert.png"; // beach image
+import beach from "../assets/desert.png"; 
 import logo from "../assets/seasideV.png";
 
 const Login = () => {
